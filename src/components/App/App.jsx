@@ -3,17 +3,16 @@ import axios from "axios";
 import InputForm from '../InputForm/InputForm.jsx';
 import ShoppingList from '../ShoppingList/ShoppingList.jsx';
 import Header from '../Header/Header.jsx'
-import ListItem from '../ListItem/ListItem.jsx';
 import './App.css';
 
 
 
 function App() {
     const [itemList, setItemList] = useState([]);
-    const [itemName, setNewItemName] = useState('');
-    const [itemQuantity, setNewItemQuantity] = useState('');
-    const [itemUnit, setNewItemUnit] = useState('');
-  
+    const [itemName, setItemName] = useState('');
+    const [itemQuantity, setItemQuantity] = useState(0);
+    const [itemUnit, setItemUnit] = useState('');
+
     useEffect(() => {
       fetchItem();
     }, []);
@@ -28,13 +27,14 @@ function App() {
         });
     };
   
-    const addItem = () => {
+    const addItem = (event) => {
+        event.preventDefault();
       axios.post('/list/', { name: itemName, quantity: itemQuantity, unit: itemUnit })
         .then((response) => {
           fetchItem();
-          setNewItemName('');
-          setNewItemQuantity('');
-          setNewItemUnit('');
+          setItemName('');
+          setItemQuantity(0);
+          setItemUnit('');
         })
         .catch((error) => {
           console.log('Error in addItem POST', error);
@@ -52,7 +52,7 @@ function App() {
     };
   
     const handleDelete = (id) => {
-      axios.delete('/list/', { params: { id } })
+      axios.delete(`/list/${id}`)
         .then((response) => {
           fetchItem();
         })
@@ -60,22 +60,22 @@ function App() {
           console.log('Error in handleDelete', error);
         });
     };
-  
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        fetchItem();
+      const handleClear = () => {
+        axios.delete(`/list/`)
+          .then(() => {
+            fetchItem();
+          })
+          .catch((error) => {
+            console.log('Error in handleClear', error);
+          });
       };
 
-
-
-
-// ADDED 'ListItem' UNDER <P> TAG -MARK
     return (
         <div className="App">
             <Header />
             <main>
-                <InputForm itemList={itemList} fetchItem={fetchItem} handleDelete={handleDelete} handleSubmit={handleSubmit}/>
+                <InputForm addItem={addItem} itemUnit={itemUnit} setItemUnit={setItemUnit} itemName={itemName} setItemName={setItemName} itemQuantity={itemQuantity} setItemQuantity= {setItemQuantity}/>
                 <hr/>
                 <ShoppingList itemList={itemList} handleDelete={handleDelete} updateItem={updateItem}/>
                                 

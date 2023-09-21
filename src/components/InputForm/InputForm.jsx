@@ -1,44 +1,39 @@
 import React, { useState } from 'react';
 
 
-export default function InputForm({ fetchItem, handleDelete, handleSubmit}){
-
-  const [itemInput, setItemInput] = useState("");
-  const [quantityInput,setQuantityInput] = useState("");
-  const [unitInput ,setUnitInput] = useState("");
-
+export default function InputForm( {addItem, itemName, setItemName, itemUnit, setItemUnit, itemQuantity, setItemQuantity} ){
 
 return(<>
 <div>
 <h2>Add a New Item</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={addItem}>
         <label>Item</label>
         <input
           type="text"
           placeholder="Item name"
-          value={itemInput}
-          onChange={(event) => setItemInput(event.target.value)}
+          value={itemName}
+          onChange={(event) => setItemName(event.target.value)}
         />
-              <label>Quantity</label>
+        <label>Quantity</label>
         <input
           type="number"
           placeholder="Quantity"
-          value={quantityInput}
-          onChange={(event) => setQuantityInput(event.target.value)}
+          value={itemQuantity}
+          onChange={(event) => setItemQuantity(event.target.value)}
         />
-              <label>Unit</label>
+        <label>Unit</label>
         <input
           type="text"
           placeholder="Unit"
-          value={unitInput}
-          onChange={(event) => setUnitInput(event.target.value)}
+          value={itemUnit}
+          onChange={(event) => setItemUnit(event.target.value)}
         />
         <button type="submit">Add Item</button>
         </form>
         <h2> Shopping List </h2>
 
         <button>Reset</button>
-        <button onClick={() => handleDelete(id)}>Clear</button>
+        <button onClick={() => handleClear()}>Clear</button>
 </div>
 
  </>)
