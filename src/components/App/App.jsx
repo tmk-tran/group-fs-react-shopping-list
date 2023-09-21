@@ -52,7 +52,7 @@ function App() {
     };
 
     const resetList = () => {
-        axios.put()
+        axios.put("/list/reset")
           .then((response) => {
             fetchItem();
           })
