@@ -10,19 +10,3 @@
 .container {
     padding: 2px 16px;
 }
-
-#buyBtn {
-    background-color: green;
-}
-
-#buyBtn:hover {
-    background-color: springgreen;
-}
-
-#removeBtn {
-    background-color: red;
-}
-
-#removeBtn:hover {
-    background-color: tomato;
-}

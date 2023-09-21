@@ -1,43 +1,45 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
-export default function InputForm({handleSubmit, newItemName, newItemQuantity, newItemUnit}){
+
+export default function InputForm({ fetchItem, handleDelete, handleSubmit}){
+
+  const [itemInput, setItemInput] = useState("");
+  const [quantityInput,setQuantityInput] = useState("");
+  const [unitInput ,setUnitInput] = useState("");
+
 
 return(<>
 <div>
-<h2>Add a new guest</h2>
+<h2>Add a New Item</h2>
       <form onSubmit={handleSubmit}>
         <label>Item</label>
         <input
           type="text"
           placeholder="Item name"
-          value={newItemName}
-          onChange={(event) => setNewItemName(event.target.value)}
+          value={itemInput}
+          onChange={(event) => setItemInput(event.target.value)}
         />
               <label>Quantity</label>
         <input
           type="number"
           placeholder="Quantity"
-          value={newItemQuantity}
-          onChange={(event) => setNewItemQuantity(event.target.value)}
+          value={quantityInput}
+          onChange={(event) => setQuantityInput(event.target.value)}
         />
               <label>Unit</label>
         <input
           type="text"
           placeholder="Unit"
-          value={newItemUnit}
-          onChange={(event) => setNewItemUnit(event.target.value)}
+          value={unitInput}
+          onChange={(event) => setUnitInput(event.target.value)}
         />
         <button type="submit">Add Item</button>
         </form>
         <h2> Shopping List </h2>
+
         <button>Reset</button>
         <button onClick={() => handleDelete(id)}>Clear</button>
 </div>
 
  </>)
 }
-
-StudentForm.propTypes = {
-    addStudent: PropTypes.func.isRequired,
-};

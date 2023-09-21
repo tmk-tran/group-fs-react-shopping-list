@@ -1,0 +1,15 @@
+#buyBtn {
+    background-color: green;
+}
+
+#buyBtn:hover {
+    background-color: springgreen;
+}
+
+#deleteBtn {
+    background-color: red;
+}
+
+#deleteBtn:hover {
+    background-color: tomato;
+}

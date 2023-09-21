@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import axios from "axios";
 import InputForm from '../InputForm/InputForm.jsx';
 import ShoppingList from '../ShoppingList/ShoppingList.jsx';
 import Header from '../Header/Header.jsx'
@@ -7,73 +7,65 @@ import ListItem from '../ListItem/ListItem.jsx';
 import './App.css';
 
 
+
 function App() {
-    let [itemList, setItemList] = useState([]);
-    const [newItemName, setNewItemName] = useState("");
-    const [newItemQuantity,setNewItemQuantity] = useState("");
-    const [newItemUnit,setNewItemUnit] = useState("");
-
-    
+    const [itemList, setItemList] = useState([]);
+    const [itemName, setNewItemName] = useState('');
+    const [itemQuantity, setNewItemQuantity] = useState('');
+    const [itemUnit, setNewItemUnit] = useState('');
+  
     useEffect(() => {
-        fetchItem();
-      }, []);
-    
+      fetchItem();
+    }, []);
+  
     const fetchItem = () => {
-    axios.get('/list')
+      axios.get('/list/')
         .then((response) => {
-            setItemList(response.data);
+          setItemList(response.data);
         })
         .catch((error) => {
-            console.log('Error in fetchItem GET', error)
+          console.log('Error in fetchItem GET', error);
         });
-
-    }
+    };
+  
     const addItem = () => {
-        axios.post('/list', {name: itemName, quantity: itemQuantity, unit: itemUnit})
-            .then((response) => {
-                fetchItem();
-                setNewItemName("")
-                setNewItemQuantity("")
-                setNewItemUnit("")
-            })
-            .catch((error) => {
-                console.log('Error in addItem POST', error)
-            });
-
-
-    }
-    const updateItem = (id) => {
-        axios.put(`/list/${id}`)
+      axios.post('/list/', { name: itemName, quantity: itemQuantity, unit: itemUnit })
         .then((response) => {
-            fetchItem();
+          fetchItem();
+          setNewItemName('');
+          setNewItemQuantity('');
+          setNewItemUnit('');
         })
         .catch((error) => {
-            console.log('Error in updateItem PUT', error)
-
+          console.log('Error in addItem POST', error);
         });
-
-
-    }
-
-
-    const handleDelete = (event) => {
-        axios.delete('/list'), {params: i}
-
-    }
-
-
+    };
+  
+    const updateItem = (id) => {
+      axios.put(`/list/${id}`, { name: itemName, quantity: itemQuantity, unit: itemUnit })
+        .then((response) => {
+          fetchItem();
+        })
+        .catch((error) => {
+          console.log('Error in updateItem PUT', error);
+        });
+    };
+  
+    const handleDelete = (id) => {
+      axios.delete('/list/', { params: { id } })
+        .then((response) => {
+          fetchItem();
+        })
+        .catch((error) => {
+          console.log('Error in handleDelete', error);
+        });
+    };
+  
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (newItemName) {
-          addItem();
-        } else {
-          alert("The new item needs a name!");
-        }
+        fetchItem();
       };
-
-
-
 
 
 
@@ -83,10 +75,9 @@ function App() {
         <div className="App">
             <Header />
             <main>
-                <p>Under Construction...</p>
-                <InputForm handleSubmit={handleSubmit} newItemName={newItemName} newItemQuantity={newItemQuantity} newItemUnit={newItemUnit} setNewItemName={setNewItemName}setNewItemQuantity={setNewItemQuantity} setNewItemUnit={setNewItemUnit}/>
+                <InputForm itemList={itemList} fetchItem={fetchItem} handleDelete={handleDelete} handleSubmit={handleSubmit}/>
                 <hr/>
-                <ShoppingList/>
+                <ShoppingList itemList={itemList} handleDelete={handleDelete} updateItem={updateItem}/>
                                 
             </main>
         </div>
