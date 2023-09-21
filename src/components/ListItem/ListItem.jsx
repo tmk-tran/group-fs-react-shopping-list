@@ -7,7 +7,7 @@ export default function ListItem({ item, updateItem, handleDelete}) {
       <br />
       <div>
       {item.purchased ? (
-        <span>Purchased</span>
+        <span style={{backgroundColor:"rgb(74, 196, 25)", borderRadius:"3px"}}>Purchased</span>
       ) : (
         <div>
           <button className="buyBtn" onClick={() => updateItem(item.id)}>Buy</button>

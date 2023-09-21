@@ -68,7 +68,7 @@ router.delete("/", (req, res) => {
 
 
 // PUT request
-router.put("/:id", (req, res) => {
+router.put("/purchased/:id", (req, res) => {
     const id = req.params.id;
     console.log("PUT route in /list/ with id of ", id);
     const item = req.body;
@@ -79,6 +79,19 @@ router.put("/:id", (req, res) => {
         res.sendStatus(204);
     }).catch((err) => {
         console.log("error in PUT", err);
+        res.sendStatus(500);
+    });
+});
+
+router.put("/reset", (req, res) => {
+    console.log("PUT route in /list/ RESET");
+    let queryText = `UPDATE "list" SET "purchased" = false WHERE "id" = $1; `;
+    pool
+    .query(queryText)
+    .then(() => {
+        res.sendStatus(204);
+    }).catch((err) => {
+        console.log("error in PUT, reset", err);
         res.sendStatus(500);
     });
 });

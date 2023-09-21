@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-export default function InputForm( { handleClear, addItem, itemName, setItemName, itemUnit, setItemUnit, itemQuantity, setItemQuantity} ){
+export default function InputForm( { resetList, addItem, itemName, setItemName, itemUnit, setItemUnit, itemQuantity, setItemQuantity} ){
 
 return(<>
 <div>
@@ -32,7 +32,7 @@ return(<>
         </form>
         <h2> Shopping List </h2>
 
-        <button>Reset</button>
+        <button onClick={() => resetList()}>Reset</button>
         <button onClick={() => handleClear()}>Clear</button>
 </div>
 

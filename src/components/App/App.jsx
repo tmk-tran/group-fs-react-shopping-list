@@ -42,7 +42,7 @@ function App() {
     };
   
     const updateItem = (id) => {
-      axios.put(`/list/${id}`, { name: itemName, quantity: itemQuantity, unit: itemUnit })
+      axios.put(`/list/purchased/${id}`, { name: itemName, quantity: itemQuantity, unit: itemUnit })
         .then((response) => {
           fetchItem();
         })
@@ -50,7 +50,17 @@ function App() {
           console.log('Error in updateItem PUT', error);
         });
     };
-  
+
+    const resetList = () => {
+        axios.put()
+          .then((response) => {
+            fetchItem();
+          })
+          .catch((error) => {
+            console.log('Error in reset list PUT', error);
+          });
+      };
+
     const handleDelete = (id) => {
       axios.delete(`/list/${id}`)
         .then((response) => {
@@ -76,7 +86,7 @@ function App() {
         <div className="App">
             <Header />
             <main>
-                <InputForm handleClear={handleClear} addItem={addItem} itemUnit={itemUnit} setItemUnit={setItemUnit} itemName={itemName} setItemName={setItemName} itemQuantity={itemQuantity} setItemQuantity= {setItemQuantity}/>
+                <InputForm resetList={resetList} handleClear={handleClear} addItem={addItem} itemUnit={itemUnit} setItemUnit={setItemUnit} itemName={itemName} setItemName={setItemName} itemQuantity={itemQuantity} setItemQuantity= {setItemQuantity}/>
                 <hr/>
                 <ShoppingList itemList={itemList} handleDelete={handleDelete} updateItem={updateItem}/>
                                 
