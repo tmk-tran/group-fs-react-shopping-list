@@ -1,6 +1,8 @@
 export default function ListItem({ item, updateItem, handleDelete}) {
+    // const itemClassName = item.purchased ? 'purchased' : '';
+
   return ( 
-        <div className="card">
+    <div className="card">
       <p>{item.name}</p>
       <p>{item.quantity} {item.unit}</p>
       <br />

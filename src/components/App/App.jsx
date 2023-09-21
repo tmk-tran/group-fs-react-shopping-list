@@ -10,7 +10,7 @@ import './App.css';
 function App() {
     const [itemList, setItemList] = useState([]);
     const [itemName, setItemName] = useState('');
-    const [itemQuantity, setItemQuantity] = useState(0);
+    const [itemQuantity, setItemQuantity] = useState("");
     const [itemUnit, setItemUnit] = useState('');
 
     useEffect(() => {
@@ -33,7 +33,7 @@ function App() {
         .then((response) => {
           fetchItem();
           setItemName('');
-          setItemQuantity(0);
+          setItemQuantity();
           setItemUnit('');
         })
         .catch((error) => {
@@ -64,6 +64,7 @@ function App() {
       const handleClear = () => {
         axios.delete(`/list/`)
           .then(() => {
+            console.log("in clear")
             fetchItem();
           })
           .catch((error) => {
@@ -75,7 +76,7 @@ function App() {
         <div className="App">
             <Header />
             <main>
-                <InputForm addItem={addItem} itemUnit={itemUnit} setItemUnit={setItemUnit} itemName={itemName} setItemName={setItemName} itemQuantity={itemQuantity} setItemQuantity= {setItemQuantity}/>
+                <InputForm handleClear={handleClear} addItem={addItem} itemUnit={itemUnit} setItemUnit={setItemUnit} itemName={itemName} setItemName={setItemName} itemQuantity={itemQuantity} setItemQuantity= {setItemQuantity}/>
                 <hr/>
                 <ShoppingList itemList={itemList} handleDelete={handleDelete} updateItem={updateItem}/>
                                 
@@ -83,5 +84,4 @@ function App() {
         </div>
     );
 }
-
 export default App;
