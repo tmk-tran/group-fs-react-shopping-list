@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-export default function InputForm( { resetList, addItem, itemName, setItemName, itemUnit, setItemUnit, itemQuantity, setItemQuantity} ){
+export default function InputForm( { handleClear, resetList, addItem, itemName, setItemName, itemUnit, setItemUnit, itemQuantity, setItemQuantity} ){
 
 return(<>
 <div>
