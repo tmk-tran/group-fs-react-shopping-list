@@ -1,16 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboardCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+// import { useState } from "react";
 
 export default function ListItem({ item, updateItem, handleDelete }) {
-  // const [isEditing, setIsEditing] = useState(false);
+//   const [isEditing, setIsEditing] = useState(false);
+  
 
-  // added variable for changing the background color
-  const card = item.purchased ? "card purchased" : "card";
-  // vavriable for grey out items on purchase
+  // variable for grey out items on purchase
   const textGrey = item.purchased
     ? { color: "gray", textDecoration: "line-through" }
     : {};
+
+
 
     
 
