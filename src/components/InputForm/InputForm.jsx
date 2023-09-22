@@ -33,7 +33,7 @@ return(
         <h2> Shopping List </h2>
 
         <button className="resetBtn" onClick={() => resetList()}>Reset</button>
-        <button className="clearBtn" onClick={() => handleClear()}>Clear</button>
+        <button className="clearBtn" onClick={() => handleClear()}>CLEAR</button>
 </div>
 
  );

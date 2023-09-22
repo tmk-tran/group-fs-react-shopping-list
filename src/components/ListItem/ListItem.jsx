@@ -3,7 +3,8 @@ import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function ListItem({ item, updateItem, handleDelete}) {
-
+    // const [isEditing, setIsEditing] = useState(false);
+    
     // added variable for changing the background color
     const card = item.purchased ? 'card purchased' : 'card';
     // vavriable for grey out items on purchase
@@ -11,6 +12,7 @@ export default function ListItem({ item, updateItem, handleDelete}) {
 
   return ( 
     <div className="card">
+        <button className="editBtn" onClick={() => console.log('clicked edit yo!')}>Edit</button>
         <h3></h3>  
       <p style={textGrey}>{item.name}</p>
       <p style={textGrey}>Qty:  {item.quantity} {item.unit}</p>
