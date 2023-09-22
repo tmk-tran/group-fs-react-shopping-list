@@ -28,9 +28,8 @@ Items should initially appear alphabetically, but as items are marked purchased 
 The `Reset` button should clear the purchased status from all items, allowing the list to be re-used. The `Clear` button should remove all items from the list, deleting them from the database.
 
 ## Database:
-    - please reference the databse.sql file to create a new database
-    - database name is: fs-react-shopping
+- Please reference the databse.sql file to create a new database
+- Database name is: fs-react-shopping
 
-## What problem did you solve? How did you solve it?
 
 

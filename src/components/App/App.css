@@ -3,11 +3,39 @@ main {
   margin: auto;
 }
 
+body {
+  background-color:azure;
+}
+
+input {
+  margin-right: 15px;
+  border: 1px solid rgb(214, 206, 206);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  font-size: 14px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  display: inline-block;
+  width: 20%;
+  margin-right: 15px;
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(186, 212, 212);
+  font-family: arial;
+  border: 1px solid white;;
+}
+
+/* ~~~~~~~~~~ Button Style ~~~~~~~~~~ */
+
 .buyBtn {
   background-color: rgb(63, 151, 63);
   border: 1px solid black;
   border-radius: 3px;
   padding: 3px 10px;
+  margin-right: 5px;
 }
 
 .buyBtn:hover {
@@ -18,19 +46,47 @@ main {
   border: 1px solid black;
   border-radius: 3px;
   padding: 3px 10px;
-  background-color: #ce1717;
+  background-color: #cc6767;
+  margin-left: 5px;
 }
 
 .deleteBtn:hover {
   background-color: tomato;
 }
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
+
+.resetBtn {
+  background-color: peachpuff;
   border-radius: 5px;
-  display: inline-block;
-  width: 20%;
-  margin-right: 15px;
-  padding: 10px;
-  text-align: center;
+}
+
+.resetBtn:hover {
+  background-color: rgb(208, 167, 167);
+}
+
+.clearBtn {
+  background-color: lightcoral;
+  border-radius: 5px;
+}
+
+.clearBtn:hover {
+  background-color: red;
+}
+
+.addBtn {
+  background-color: rgb(152, 201, 249);
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  height: 30px;
+}
+
+.addBtn:hover {
+  background-color: lightblue;
+}
+
+.clipboard-icon {
+  height: 15px; 
+}
+
+.trash-icon {
+  height: 15px;
 }

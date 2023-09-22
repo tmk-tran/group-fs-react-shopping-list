@@ -21,11 +21,11 @@ Each item can have a:
 - Quantity - allow for decimal numbers (required)
 - Unit - text, allow up to 20 characters (optional)
 
-When the page first loads, all the existing items should be displayed with the quantity & unit combined together for display. Each item should also have an option to remove it from the list or mark it as purchased. Once purchased, the buttons should be hidden and the item should show as "Purchased". 
+[x] When the page first loads, all the existing items should be displayed with the quantity & unit combined together for display. Each item should also have an option to remove it from the list or mark it as purchased. Once purchased, the buttons should be hidden and the item should show as "Purchased". 
 
-Items should initially appear alphabetically, but as items are marked purchased they should sort to the end of the list.
+[x] Items should initially appear alphabetically, but as items are marked purchased they should sort to the end of the list.
 
-The `Reset` button should clear the purchased status from all items, allowing the list to be re-used. The `Clear` button should remove all items from the list, deleting them from the database.
+[x] The `Reset` button should clear the purchased status from all items, allowing the list to be re-used. The `Clear` button should remove all items from the list, deleting them from the database.
 
 #### Hint for Marking as purchased/removing item
 >> If you've set up your components as we have shown, you should have an `Item` Component. That item should have access to every property of the item *object* -- this will be critical to successfully calling a PUT or DELETE route with the id (`/:id`). 
@@ -51,7 +51,7 @@ The `Reset` button should clear the purchased status from all items, allowing th
 
 ## Stretch Features 
 
-- Update this Readme file to use the [Template](https://github.com/PrimeAcademy/readme-template) and fill in the sections.
+- [x] Update this Readme file to use the [Template](https://github.com/PrimeAcademy/readme-template) and fill in the sections.
 
 - Add a confirmation dialog to the reset and clear button so that when the user clicks,  they are prompted to confirm whether they *really* want to perform that action. (Check out [Sweet Alerts](https://www.npmjs.com/package/@sweetalert/with-react).)
 
@@ -60,10 +60,10 @@ The `Reset` button should clear the purchased status from all items, allowing th
   - However you should also do this on the server side and send back a friendly message if the required data is not provided.
   - Optionally, make sure the text entered isn't too long.
 
-- Improve the styling of the page
-  - When items are purchased, grey them out. 
-  - Make the buttons more UX friendly. For example, red for remove, but green or blue for save & buy.
-  - Add a icons to improve the display, for example a check mark for purchased, a trash can for remove, etc. (Check out [Font Awesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react).)
+- [x] Improve the styling of the page
+  - [x] When items are purchased, grey them out. 
+  - [x] Make the buttons more UX friendly. For example, red for remove, but green or blue for save & buy.
+  - [x] Add a icons to improve the display, for example a check mark for purchased, a trash can for remove, etc. (Check out [Font Awesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react).)
 
 - Currently, if you typo something, it must be removed and re-added to fix it. An edit feature would be a great enhancement. Add an `Edit` button which will have the existing data show in the input form at the top of the page to allow an easier edit. 
 
