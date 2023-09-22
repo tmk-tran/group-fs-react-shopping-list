@@ -31,5 +31,7 @@ The `Reset` button should clear the purchased status from all items, allowing th
 - Please reference the databse.sql file to create a new database
 - Database name is: fs-react-shopping
 
+## Screenshot:
 
+![Example of our Base Mode App:](<Screenshot 2023-09-21 at 9.05.18 PM.png>)
 
