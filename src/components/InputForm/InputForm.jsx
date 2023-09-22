@@ -24,7 +24,7 @@ return(
         />
         <input
           type="text"
-          placeholder="Unit"
+          placeholder="Units"
           value={itemUnit}
           onChange={(event) => setItemUnit(event.target.value)}
         />
