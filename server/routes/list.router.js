@@ -85,7 +85,7 @@ router.put("/purchased/:id", (req, res) => {
 
 router.put("/reset", (req, res) => {
     console.log("PUT route in /list/ RESET");
-    let queryText = `UPDATE "list" SET "purchased" = false WHERE "id" = $1; `;
+    let queryText = `UPDATE "list" SET "purchased" = false;`;
     pool
     .query(queryText)
     .then(() => {

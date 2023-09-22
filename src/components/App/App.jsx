@@ -33,7 +33,7 @@ function App() {
         .then((response) => {
           fetchItem();
           setItemName('');
-          setItemQuantity();
+          setItemQuantity(0);
           setItemUnit('');
         })
         .catch((error) => {

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 export default function InputForm( { handleClear, resetList, addItem, itemName, setItemName, itemUnit, setItemUnit, itemQuantity, setItemQuantity} ){
 
-return(<>
+return(
 <div>
 <h2>Add a New Item</h2>
       <form onSubmit={addItem}>
@@ -36,5 +36,5 @@ return(<>
         <button onClick={() => handleClear()}>Clear</button>
 </div>
 
- </>)
+ );
 }
