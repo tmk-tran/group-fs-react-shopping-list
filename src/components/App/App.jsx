@@ -30,13 +30,6 @@ function App() {
       });
   };
 
-  const handleEdit = (item) => {
-    setEditingId(item.id);
-    setItemName(item.name);
-    setItemQuantity(item.quantity);
-    setItemUnit(item.unit);
-  };
-
   const addItem = (event) => {
     event.preventDefault();
     axios.post("/list/", {
@@ -66,7 +59,18 @@ function App() {
 
   const updateItem = (id) => {
     axios
-      .put(`/list/purchased/${id}`, {
+      .put(`/list/purchased/${id}`)
+      .then((response) => {
+        fetchItem();
+      })
+      .catch((error) => {
+        console.log("Error in updateItem PUT", error);
+      });
+  };
+
+  const editItem = (id, itemName, itemQuantity, itemUnit) => {
+    axios
+      .put(`/list/edit/${id}`, {
         name: itemName,
         quantity: itemQuantity,
         unit: itemUnit,
@@ -75,7 +79,7 @@ function App() {
         fetchItem();
       })
       .catch((error) => {
-        console.log("Error in updateItem PUT", error);
+        console.log("Error in editItem PUT", error);
       });
   };
 
@@ -175,7 +179,7 @@ function resetSwal(event) {
           itemList={itemList}
           handleDelete={handleDelete}
           updateItem={updateItem}
-          handleEdit={handleEdit}
+          editItem={editItem}
         />
       </main>
     </div>

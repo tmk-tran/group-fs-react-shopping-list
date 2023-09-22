@@ -1,9 +1,9 @@
 
 
-export default function Edit(current, list, setList) {
+export default function Edit({current, list, setList}) {
     function handleInput(e) {
       const newList = list.map(div =>
-        div.id === current.id ? { ...div, [e.target.name]: e.target.value } : div
+        div.id === current.id ? { ...div,[e.target.name]: e.target.value } : div
       );
       setList(newList);
     }
@@ -19,7 +19,7 @@ export default function Edit(current, list, setList) {
     );
   }
 
-  
+
 {/*
 
 function handleEdit(id) {

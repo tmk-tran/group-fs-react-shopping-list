@@ -93,6 +93,26 @@ router.put("/purchased/:id", (req, res) => {
     });
 });
 
+// PUT Request for edit
+router.put("/edit/:id", (req,res) => {
+  const id = req.params.id;
+  
+  console.log("PUT route for edit with id", id);
+  const item = req.body;
+  let queryText = `Update "list" SET "name" = $1, "quantity" = $2, "unit" = $3 WHERE "id" =$4;`;
+  pool
+  .query(queryText, [item.name, item.quantity, item.unit, id])
+  .then((result) => {
+    console.log(`Edited`, item);
+    res.sendStatus(204);
+  })
+  .catch((error) => {
+    console.log(`Error making database query ${queryText}`, error);
+    res.sendStatus(500); // Good server always responds
+  });
+});
+
+
 router.put("/reset", (req, res) => {
     console.log("PUT route in /list/ RESET");
     let queryText = `UPDATE "list" SET "purchased" = false;`;
