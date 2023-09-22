@@ -3,12 +3,12 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 function isEmpty(value) {
-    return value.trim() === '';
+    return value === undefined || value.trim() === '';
   }
 
 // GET request
-router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "list" ORDER BY "purchased" DESC, "name" ASC;`;    pool
+router.get('/', (req, res) => { // purchased "ASC" / "DESC" is working oddly
+    const queryText = `SELECT * FROM "list" ORDER BY "purchased" ASC, "name" ASC;`;    pool
     .query(queryText)
     .then((result) => {
         res.send(result.rows)

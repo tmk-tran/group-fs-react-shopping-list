@@ -30,18 +30,25 @@ function App() {
       });
   };
 
+  const handleEdit = (item) => {
+    setEditingId(item.id);
+    setItemName(item.name);
+    setItemQuantity(item.quantity);
+    setItemUnit(item.unit);
+  };
+
   const addItem = (event) => {
     event.preventDefault();
-    // axios.post("/list/", {
-    //   name: itemName,
-    //   quantity: itemQuantity,
-    //   unit: itemUnit,
-    // });
-    axios({
-      method: editingId ? "PUT" : "POST",
-      url: `/list/${editingId ? editingId : ""}`,
-      data: { name: itemName, quantity: itemQuantity, unit: itemUnit },
+    axios.post("/list/", {
+      name: itemName,
+      quantity: itemQuantity,
+      unit: itemUnit,
     })
+    // axios({
+    //   method: editingId ? "PUT" : "POST",
+    //   url: `/list/${editingId ? editingId : ""}`,
+    //   data: { name: itemName, quantity: itemQuantity, unit: itemUnit },
+    // })
       .then((response) => {
         fetchItem();
         setItemName("");
@@ -72,7 +79,7 @@ function App() {
       });
   };
 
-  const resetList = () => {
+  const resetList = (event) => {
     axios
       .put("/list/reset")
       .then((response) => {
@@ -127,15 +134,32 @@ function App() {
       swal("Your list is safe!");
     }
   });
-  
-}
+}// end of deleteSwal
 
+function resetSwal(event) {
+  swal({
+    title: "Reset all to not purchased?",
+    text: "This cannot be undone",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((confirm) => {
+    console.log(confirm)
+    if (confirm) {
+      resetList(event);
+    } 
+  });
+}// end of deleteSwal
+
+  // end of resetSwal
   return (
     <div className="App">
       <Header />
       <main>
         <InputForm
           deleteSwal={deleteSwal}
+          resetSwal={resetSwal}
           resetList={resetList}
           handleClear={handleClear}
           addItem={addItem}
@@ -151,6 +175,7 @@ function App() {
           itemList={itemList}
           handleDelete={handleDelete}
           updateItem={updateItem}
+          handleEdit={handleEdit}
         />
       </main>
     </div>

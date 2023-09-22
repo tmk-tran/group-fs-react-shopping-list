@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function InputForm( { handleClear, resetList, addItem, itemName, setItemName, itemUnit, setItemUnit, itemQuantity, setItemQuantity, deleteSwal} ){
+export default function InputForm( { handleClear, resetList, addItem, itemName, setItemName, itemUnit, setItemUnit, itemQuantity, setItemQuantity, deleteSwal, resetSwal} ){
 
 return(
 <div>
@@ -37,7 +37,7 @@ return(
         </form>
         <h2> Shopping List </h2>
 
-        <button className="resetBtn" onClick={() => resetList()}>Reset</button>
+        <button className="resetBtn" onClick={() => resetSwal(event)}>Reset</button>
         <button className="clearBtn" onClick={() => deleteSwal(event)}>CLEAR</button>
 </div>
 
