@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
+function isEmpty(value) {
+    return value === undefined || value.trim() === '';
+  }
+
 // GET request
-router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "list";`;
-    pool
+router.get('/', (req, res) => { // purchased "ASC" / "DESC" is working oddly
+    const queryText = `SELECT * FROM "list" ORDER BY "purchased" ASC, "name" ASC;`;    pool
     .query(queryText)
     .then((result) => {
         res.send(result.rows)
@@ -17,21 +20,28 @@ router.get('/', (req, res) => {
 })
 // POST request
 router.post('/', (req, res) => {
-    console.log(req.body);
     const newItem = req.body;
+  
+    // Perform server-side validation
+    if (isEmpty(newItem.name) || isEmpty(newItem.quantity) || isEmpty(newItem.unit)) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
+  
     const queryText = `INSERT INTO "list" ("name", "quantity", "unit", "purchased")
-    VALUES ($1, $2, $3, $4);`;
-
+      VALUES ($1, $2, $3, $4);`;
+  
     pool
-    .query(queryText, [newItem.name, newItem.quantity, newItem.unit, newItem.purchased ])
-    .then((result) => {
+      .query(queryText, [newItem.name, newItem.quantity, newItem.unit, newItem.purchased])
+      .then(() => {
         res.sendStatus(201);
-    })
-    .catch((error) => {
+      })
+      .catch((error) => {
         console.log(`Error making database POST`, error);
         res.sendStatus(500);
-    });
-})
+      });
+  });
+  
+
 
 // DELETE request with id param
 router.delete("/:id", (req, res) => {
@@ -93,6 +103,23 @@ router.put("/reset", (req, res) => {
     }).catch((err) => {
         console.log("error in PUT, reset", err);
         res.sendStatus(500);
+    });
+});
+
+router.put("/:id", (req, res) => {
+    const id = req.params.id;
+    const item = req.body;
+    const sqlText = `UPDATE "list" SET "name" = $1, "quantity" = $2, WHERE "id" = $3;`;
+
+    pool
+    .query(sqlText, [item.name, item.quantity, id])
+    .then((result) => {
+      console.log(`Edited`, item);
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${sqlText}`, error);
+      res.sendStatus(500); // Good server always responds
     });
 });
 
