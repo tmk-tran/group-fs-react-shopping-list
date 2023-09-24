@@ -1,6 +1,3 @@
-
-
-import React, { useState } from 'react';
 // For Font Awesome 5
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
